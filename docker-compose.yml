@@ -1,0 +1,34 @@
+version: "3"
+volumes:
+  db-store:
+services:
+  tomcat:
+    build:
+      context: ./backend
+      dockerfile: ./tomcat/Dockerfile
+    tty: true
+    ports:
+      - 8080:8080
+    volumes:
+      - ./src/spring-boot-demo:/usr/local/src/webapp
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=${DB_NAME:-spring_local}
+      - DB_USERNAME=${DB_USER:-javarista}
+      - DB_PASSWORD=${DB_PASS:-secret}
+  
+  db:
+    build:
+      context: ./backend
+      dockerfile: ./db/mysql/Dockerfile
+    ports:
+      - ${DB_EXT_PORT:-3306}:3306
+    volumes:
+      - db-store:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=${DB_NAME:-spring_local}
+      - MYSQL_USER=${DB_USER:-javarista}
+      - MYSQL_PASSWORD=${DB_PASS:-secret}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
