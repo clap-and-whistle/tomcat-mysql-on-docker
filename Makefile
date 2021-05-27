@@ -27,6 +27,10 @@ logs:
 	docker-compose logs
 logs-watch:
 	docker-compose logs --follow
+log-builder:
+	docker-compose logs builder
+log-builder-watch:
+	docker-compose logs --follow builder
 log-tomcat:
 	docker-compose logs tomcat
 log-tomcat-watch:
@@ -35,6 +39,8 @@ log-db:
 	docker-compose logs db
 log-db-watch:
 	docker-compose logs --follow db
+builder:
+	docker-compose exec builder bash
 tomcat:
 	docker-compose exec tomcat bash
 db:
