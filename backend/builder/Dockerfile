@@ -19,8 +19,6 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
 
 WORKDIR /work/maven
 
-EXPOSE 8080
-
 ENTRYPOINT [ "/bin/bash", "-c" ]
 CMD [ "jshell" ]
 

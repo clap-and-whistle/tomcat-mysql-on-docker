@@ -40,7 +40,7 @@ log-db:
 log-db-watch:
 	docker-compose logs --follow db
 builder:
-	docker-compose exec builder bash
+	docker-compose exec --user `id -u` builder bash
 tomcat:
 	docker-compose exec tomcat bash
 db:

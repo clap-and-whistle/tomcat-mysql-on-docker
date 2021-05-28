@@ -1,6 +1,7 @@
 # 事前準備
 
 ```
+mkdir ~/.m2
 mkdir ./backend/src
 cd ./backend/src
 git clone git clone git@github.com:Kimita/cd-test-for-springboot.git spring-boot-demo
@@ -27,5 +28,5 @@ make builder
 mvn package spring-boot:repackage -Pdevelopment
 exit
 
-docker cp ./backend/src/spring-boot-demo/target/demo.war tomcat-docker_tomcat_1:/usr/local/tomcat/webapps/demo.war
+docker cp ./backend/src/spring-boot-demo/target/demo.war tomcat-mysql-on-docker_tomcat_1:/usr/local/tomcat/webapps/demo.war
 ```
