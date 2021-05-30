@@ -41,6 +41,7 @@ docker cp ./backend/src/spring-boot-demo/target/demo.war tomcat-mysql-on-docker_
     make builder
     git checkout staging
     git pull
+    # TODO: 下記のprofile指定は暫定。staging用profileを用意でき次第直す。
     mvn package spring-boot:repackage -Pdevelopment
     exit
     ```
