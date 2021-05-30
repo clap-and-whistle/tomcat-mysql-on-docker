@@ -24,9 +24,15 @@ Ctrl-C
 
 # デプロイ
 
+## ビルド済みWarファイルを展開する場合
+
+docker cp ./backend/src/spring-boot-demo/target/demo.war tomcat-mysql-on-docker_tomcat_1:/usr/local/tomcat/webapps/demo.war
+
+## 手動でWarのビルドからやる場合
+
 make builder
 mvn package spring-boot:repackage -Pdevelopment
 exit
-
 docker cp ./backend/src/spring-boot-demo/target/demo.war tomcat-mysql-on-docker_tomcat_1:/usr/local/tomcat/webapps/demo.war
+
 ```

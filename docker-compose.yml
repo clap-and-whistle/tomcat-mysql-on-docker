@@ -2,22 +2,22 @@ version: "3"
 volumes:
   db-store:
 services:
-  builder:
-    env_file: ./.env
-    tty: true
-    volumes:
-      - type: bind
-        source: ./backend/${HOST_BACKEND_SRC_PATH:-src/spring-boot-demo}
-        target: "/work/maven"
-      - type: bind
-        source: ${M2_DIR:-~/.m2}
-        target: "/home/webapp/.m2"
-    build:
-      context: ./backend
-      dockerfile: ./builder/Dockerfile
-      args:
-        OWNER_USER_ID: ${OWNER_USER_ID}
-        OWNER_GROUP_ID: ${OWNER_USER_ID}
+  # builder:
+  #   env_file: ./.env
+  #   tty: true
+  #   volumes:
+  #     - type: bind
+  #       source: ./backend/${HOST_BACKEND_SRC_PATH:-src/spring-boot-demo}
+  #       target: "/work/maven"
+  #     - type: bind
+  #       source: ${M2_DIR:-~/.m2}
+  #       target: "/home/webapp/.m2"
+  #   build:
+  #     context: ./backend
+  #     dockerfile: ./builder/Dockerfile
+  #     args:
+  #       OWNER_USER_ID: ${OWNER_USER_ID}
+  #       OWNER_GROUP_ID: ${OWNER_USER_ID}
   
   tomcat:
     tty: true
