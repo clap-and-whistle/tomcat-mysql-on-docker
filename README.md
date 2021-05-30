@@ -15,24 +15,36 @@ echo "M2_DIR=${HOME}/.m2" >> ./.env
 
 # 実行
 
+
+## 1. 初期化
+
 ```
 make init
 make log-tomcat-watch
 ...
 Ctrl-C
+```
 
+## 2. デプロイ
 
-# デプロイ
-
-## ビルド済みWarファイルを展開する場合
-
-docker cp ./backend/src/spring-boot-demo/target/demo.war tomcat-mysql-on-docker_tomcat_1:/usr/local/tomcat/webapps/demo.war
-
-## 手動でWarのビルドからやる場合
-
-make builder
-mvn package spring-boot:repackage -Pdevelopment
-exit
-docker cp ./backend/src/spring-boot-demo/target/demo.war tomcat-mysql-on-docker_tomcat_1:/usr/local/tomcat/webapps/demo.war
+### ビルド済みWarファイルを展開する場合
 
 ```
+docker cp ./backend/src/spring-boot-demo/target/demo.war tomcat-mysql-on-docker_tomcat_1:/usr/local/tomcat/webapps/demo.war
+```
+
+### 手動でWarのビルドからやる場合
+
+1. まずはDBのバックアップを取る
+2. 以下にてビルドを実行する
+    ```
+    make builder
+    git checkout staging
+    git pull
+    mvn package spring-boot:repackage -Pdevelopment
+    exit
+    ```
+3. 以下にてWarファイルをtomcatコンテナへ展開する
+    ```
+    docker cp ./backend/src/spring-boot-demo/target/demo.war tomcat-mysql-on-docker_tomcat_1:/usr/local/tomcat/webapps/demo.war
+    ```
