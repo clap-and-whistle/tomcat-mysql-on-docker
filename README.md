@@ -4,7 +4,7 @@
 mkdir ~/.m2
 mkdir ./backend/src
 cd ./backend/src
-git clone git clone git@github.com:Kimita/cd-test-for-springboot.git spring-boot-demo
+git clone git@github.com:clap-and-whistle/cd-test-for-spring-boot-demo.git spring-boot-demo
 cd spring-boot-demo
 git checkout dev
 cd ../../..
@@ -42,7 +42,7 @@ docker cp ./backend/src/spring-boot-demo/target/demo.war tomcat-mysql-on-docker_
     git checkout staging
     git pull
     # TODO: 下記のprofile指定は暫定。staging用profileを用意でき次第直す。
-    mvn package spring-boot:repackage -Pdevelopment
+    mvn package spring-boot:repackage -Dmaven.test.skip -Pdevelopment
     exit
     ```
 3. 以下にてWarファイルをtomcatコンテナへ展開する
