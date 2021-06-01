@@ -1,12 +1,14 @@
 # 事前準備
 
 ```
+git config --global user.email your-email@example.local
+git config --global user.name "Your Name"
 mkdir ~/.m2
 mkdir ./backend/src
 cd ./backend/src
 git clone git@github.com:clap-and-whistle/cd-test-for-spring-boot-demo.git spring-boot-demo
 cd spring-boot-demo
-git checkout dev
+git checkout staging
 cd ../../..
 cp ./.env.example ./.env
 echo "OWNER_USER_ID=`id -u`" >> ./.env
